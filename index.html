@@ -497,6 +497,36 @@
 
     .pakket-features li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
 
+    /* ── TESTIMONIALS ── */
+    .testimonials-section { background: var(--dark); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+      max-width: 1100px;
+      margin: 3rem auto 0;
+    }
+
+    .testimonial {
+      padding: 2.5rem;
+      border: 1px solid rgba(201,168,76,0.16);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .testimonial:hover { border-color: var(--gold); transform: translateY(-5px); }
+
+    .testimonial-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: rgba(245,242,237,0.8);
+      margin-bottom: 1.75rem;
+    }
+
+    .testimonial-author { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+
     /* ── CONTACT ── */
     .contact-inner { max-width: 620px; margin: 0 auto; text-align: center; }
 
@@ -558,6 +588,7 @@
       .text-col.in-view { transform: translateY(0) !important; }
       .werkwijze-grid { grid-template-columns: 1fr; }
       .prijzen-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
       .hero-scroll { display: none; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
@@ -642,7 +673,7 @@
 <!-- SCROLL VIDEO SECTIONS — PORTFOLIO -->
 <div id="portfolio">
 
-  <!-- SECTION 1 — Living room -->
+  <!-- VILLA ABBA BEACH — shot 1: Living room -->
   <div class="video-section">
     <div class="video-section-inner">
       <div class="video-col">
@@ -651,7 +682,7 @@
         </video>
       </div>
       <div class="text-col">
-        <p class="video-section-label">Portfolio · 01</p>
+        <p class="video-section-label">Villa Abba Beach · Walkthrough 01</p>
         <h2 class="video-section-title">The living room as<br><em style="font-style:italic; color:var(--gold-lt);">opening statement.</em></h2>
         <p class="video-section-text">Every villa has a moment that makes the visitor catch their breath. We capture that moment — the first glimpse of the open living room, the sea view that suddenly fills the frame. Cinematic, meditative, unforgettable.</p>
         <div class="video-section-tag">Villa Abba Beach · Koh Samui, Thailand</div>
@@ -659,24 +690,7 @@
     </div>
   </div>
 
-  <!-- SECTION 2 — Pool (reversed) -->
-  <div class="video-section reverse">
-    <div class="video-section-inner">
-      <div class="video-col">
-        <video class="scroll-video" muted loop playsinline>
-          <source src="clip-zwembad.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div class="text-col">
-        <p class="video-section-label">Portfolio · 02</p>
-        <h2 class="video-section-title">The infinity pool<br><em style="font-style:italic; color:var(--gold-lt);">money shot.</em></h2>
-        <p class="video-section-text">The pool is the ultimate selling point of any luxury villa. We capture it exactly as it deserves — the moment turquoise water blends seamlessly into the horizon. This is the shot that seals the booking.</p>
-        <div class="video-section-tag">Villa Bonnie · Koh Samui, Thailand</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION 3 — Bedroom -->
+  <!-- VILLA ABBA BEACH — shot 2: Bedroom -->
   <div class="video-section">
     <div class="video-section-inner">
       <div class="video-col">
@@ -685,7 +699,7 @@
         </video>
       </div>
       <div class="text-col">
-        <p class="video-section-label">Portfolio · 03</p>
+        <p class="video-section-label">Villa Abba Beach · Walkthrough 02</p>
         <h2 class="video-section-title">Private, intimate,<br><em style="font-style:italic; color:var(--gold-lt);">unforgettable.</em></h2>
         <p class="video-section-text">The master suite is where the guest comes home. We capture the calm, the texture, and the panorama — so every future guest already feels at home before the booking is even made.</p>
         <div class="video-section-tag">Villa Abba Beach · Koh Samui, Thailand</div>
@@ -693,7 +707,41 @@
     </div>
   </div>
 
-  <!-- SECTION 4 — Drone (reversed) -->
+  <!-- VILLA ABBA BEACH — full walkthrough (reversed) -->
+  <div class="video-section reverse">
+    <div class="video-section-inner">
+      <div class="video-col">
+        <video class="scroll-video" muted loop playsinline>
+          <source src="clip-villa-abba-tour.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="text-col">
+        <p class="video-section-label">Villa Abba Beach · Full Walkthrough</p>
+        <h2 class="video-section-title">The complete<br><em style="font-style:italic; color:var(--gold-lt);">story, room by room.</em></h2>
+        <p class="video-section-text">From the first glimpse of the living room to the final drone reveal — watch the entire cinematic walkthrough of Villa Abba Beach, exactly as your future guests will experience it.</p>
+        <div class="video-section-tag">Villa Abba Beach · Koh Samui, Thailand</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VILLA BONNIE — shot 1: Pool (reversed) -->
+  <div class="video-section reverse">
+    <div class="video-section-inner">
+      <div class="video-col">
+        <video class="scroll-video" muted loop playsinline>
+          <source src="clip-zwembad.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="text-col">
+        <p class="video-section-label">Villa Bonnie · Walkthrough 01</p>
+        <h2 class="video-section-title">The infinity pool<br><em style="font-style:italic; color:var(--gold-lt);">money shot.</em></h2>
+        <p class="video-section-text">The pool is the ultimate selling point of any luxury villa. We capture it exactly as it deserves — the moment turquoise water blends seamlessly into the horizon. This is the shot that seals the booking.</p>
+        <div class="video-section-tag">Villa Bonnie · Koh Samui, Thailand</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VILLA BONNIE — shot 2: Drone (reversed) -->
   <div class="video-section reverse">
     <div class="video-section-inner">
       <div class="video-col">
@@ -702,7 +750,7 @@
         </video>
       </div>
       <div class="text-col">
-        <p class="video-section-label">Portfolio · 04</p>
+        <p class="video-section-label">Villa Bonnie · Walkthrough 02</p>
         <h2 class="video-section-title">The bigger<br><em style="font-style:italic; color:var(--gold-lt);">perspective.</em></h2>
         <p class="video-section-text">Every walkthrough closes with a majestic overview of the full property — architecture, surroundings, and location in one cinematic frame. The finale that stays with you.</p>
         <div class="video-section-tag">Villa Bonnie · Koh Samui, Thailand</div>
@@ -710,7 +758,43 @@
     </div>
   </div>
 
+  <!-- VILLA BONNIE — full walkthrough -->
+  <div class="video-section">
+    <div class="video-section-inner">
+      <div class="video-col">
+        <video class="scroll-video" muted loop playsinline>
+          <source src="clip-villa-bonnie-tour.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="text-col">
+        <p class="video-section-label">Villa Bonnie · Full Walkthrough</p>
+        <h2 class="video-section-title">One villa,<br><em style="font-style:italic; color:var(--gold-lt);">told in full.</em></h2>
+        <p class="video-section-text">The infinity pool, the interiors, the aerial reveal — see the complete cinematic walkthrough of Villa Bonnie from start to finish.</p>
+        <div class="video-section-tag">Villa Bonnie · Koh Samui, Thailand</div>
+      </div>
+    </div>
+  </div>
+
 </div>
+
+<!-- TESTIMONIALS -->
+<!-- PLACEHOLDER CONTENT — replace both quotes below with real client feedback before launch -->
+<section class="testimonials-section" id="testimonials">
+  <div style="max-width:1200px; margin:0 auto;">
+    <p class="section-label">Testimonials</p>
+    <h2 class="section-title">What hosts are saying.</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <p class="testimonial-quote">"[Voeg hier een echte quote van een tevreden klant toe.]"</p>
+        <p class="testimonial-author">— [Naam], [Villa / bedrijf]</p>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-quote">"[Voeg hier een tweede quote toe.]"</p>
+        <p class="testimonial-author">— [Naam], [Villa / bedrijf]</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- PROCESS -->
 <section class="werkwijze-section" id="werkwijze">
@@ -800,9 +884,8 @@
     <h2 class="section-title">Ready to bring your villa<br>to life on screen?</h2>
     <div class="divider" style="margin:2rem auto;"></div>
     <p>Send us a message about your villa and we'll get back to you within 24 hours for a no-obligation conversation about the possibilities.</p>
-    <!-- REPLACE THIS WITH YOUR OWN EMAIL ADDRESS -->
-    <a href="mailto:info@mz3dcinematic.com" class="contact-email">info@mz3dcinematic.com</a>
-    <a href="mailto:info@mz3dcinematic.com" class="btn btn-filled">Send a message</a>
+    <a href="mailto:mzestatemotion@gmail.com" class="contact-email">mzestatemotion@gmail.com</a>
+    <a href="mailto:mzestatemotion@gmail.com" class="btn btn-filled">Send a message</a>
     <div class="contact-locations">
       <div class="location">
         <div class="location-name">Turnaround</div>
