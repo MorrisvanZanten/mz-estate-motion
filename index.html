@@ -941,6 +941,20 @@
     const scroll    = document.getElementById('heroScroll');
     const heroVideo = document.getElementById('heroVideo');
 
+    heroVideo.muted = true;
+    heroVideo.play().catch(() => {});
+
+    // Fallback: some browsers (and iOS Low Power Mode) block the initial
+    // autoplay attempt but will allow playback as soon as the visitor
+    // interacts with the page at all — so start it on their first touch/
+    // scroll/click instead of requiring them to find the play button.
+    const tryPlayOnFirstInteraction = () => {
+      heroVideo.play().catch(() => {});
+    };
+    ['touchstart', 'scroll', 'click'].forEach(evt => {
+      window.addEventListener(evt, tryPlayOnFirstInteraction, { once: true, passive: true });
+    });
+
     setTimeout(() => logo.classList.add('fade'), 1200);
     setTimeout(() => overlay.classList.add('open'), 1400);
     setTimeout(() => heroVideo.classList.add('zoomed'), 1600);
