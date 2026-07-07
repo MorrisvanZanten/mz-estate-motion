@@ -614,6 +614,80 @@
       text-transform: uppercase;
     }
 
+    /* ── PORTFOLIO PREVIEW THUMBS ── */
+    .portfolio-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 3rem auto 0;
+    }
+
+    .preview-thumb {
+      position: relative;
+      display: block;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.14);
+      transition: border-color 0.3s;
+    }
+
+    .preview-thumb:hover { border-color: var(--gold); }
+
+    .preview-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .preview-thumb:hover img { transform: scale(1.05); }
+
+    .preview-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.25);
+      transition: background 0.25s;
+    }
+
+    .preview-thumb:hover .preview-play { background: rgba(0,0,0,0.4); }
+
+    .preview-play-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(10,10,10,0.55);
+      border: 1px solid rgba(245,242,237,0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preview-tri {
+      width: 0;
+      height: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 12px solid var(--white);
+      margin-left: 3px;
+    }
+
+    .preview-label {
+      position: absolute;
+      bottom: 0.8rem;
+      left: 0.8rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: rgba(10,10,10,0.55);
+      padding: 0.3rem 0.7rem;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 1.25rem 1.5rem; }
@@ -629,6 +703,7 @@
       .werkwijze-grid { grid-template-columns: 1fr; }
       .prijzen-grid { grid-template-columns: 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
+      .portfolio-preview-grid { grid-template-columns: 1fr; }
       .hero-scroll { display: none; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
@@ -889,7 +964,26 @@
   <p class="section-label">See more</p>
   <h2 class="section-title">Want to see every villa,<br>start to finish?</h2>
   <div class="divider" style="margin:1.5rem auto;"></div>
-  <a href="portfolio.html" class="btn btn-filled">View Full Portfolio</a>
+
+  <div class="portfolio-preview-grid">
+    <a href="portfolio.html" class="preview-thumb">
+      <img src="poster-clip-portfolio-abba.jpg" alt="Villa Abba Beach walkthrough" />
+      <span class="preview-play"><span class="preview-play-icon"><span class="preview-tri"></span></span></span>
+      <span class="preview-label">Villa Abba Beach</span>
+    </a>
+    <a href="portfolio.html" class="preview-thumb">
+      <img src="poster-clip-portfolio-bonnie.jpg" alt="Villa Bonnie walkthrough" />
+      <span class="preview-play"><span class="preview-play-icon"><span class="preview-tri"></span></span></span>
+      <span class="preview-label">Villa Bonnie</span>
+    </a>
+    <a href="portfolio.html" class="preview-thumb">
+      <img src="poster-clip-portfolio-kortenhoef.jpg" alt="Villa Kortenhoefsedijk 198 walkthrough" />
+      <span class="preview-play"><span class="preview-play-icon"><span class="preview-tri"></span></span></span>
+      <span class="preview-label">Villa Kortenhoefsedijk 198</span>
+    </a>
+  </div>
+
+  <a href="portfolio.html" class="btn btn-filled" style="margin-top:2.5rem; display:inline-block;">View Full Portfolio</a>
 </section>
 
 <!-- CONTACT -->
