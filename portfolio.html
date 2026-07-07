@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Full Portfolio — MZ Estate Motion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0A0A0A;
+      --gold:    #C9A84C;
+      --gold-lt: #E2C97E;
+      --white:   #F5F2ED;
+      --grey:    #8A8A8A;
+      --dark:    #111111;
+      --card:    #161616;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.92), rgba(10,10,10,0.75));
+      backdrop-filter: blur(6px);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      letter-spacing: 0.16em;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.73rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.68;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--gold); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.3rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      text-decoration: none;
+      font-size: 0.73rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .btn:hover { background: var(--gold); color: var(--black); }
+    .btn.active { background: var(--gold); color: var(--black); }
+
+    /* ── GENERAL SECTIONS ── */
+    section { padding: 7rem 4rem; }
+
+    .section-label {
+      font-size: 0.63rem;
+      letter-spacing: 0.33em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.85rem, 3vw, 2.85rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .divider { width: 3rem; height: 1px; background: var(--gold); margin: 2rem 0; }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding-top: 11rem;
+      padding-bottom: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .page-header p.sub {
+      color: rgba(245,242,237,0.6);
+      font-size: 0.95rem;
+      max-width: 640px;
+    }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      max-width: 1200px;
+      margin: 0 auto 3.5rem;
+      padding: 0 4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .filter-btn {
+      padding: 0.7rem 1.6rem;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--white);
+      opacity: 0.75;
+      background: transparent;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.25s, color 0.25s, opacity 0.25s, border-color 0.25s;
+    }
+
+    .filter-btn:hover { opacity: 1; border-color: var(--gold); }
+
+    .filter-btn.active {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+      opacity: 1;
+    }
+
+    /* ── PORTFOLIO GRID ── */
+    .portfolio-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 4rem 4rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .portfolio-card {
+      background: var(--card);
+      border: 1px solid rgba(201,168,76,0.14);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease, border-color 0.3s;
+    }
+
+    .portfolio-card.in-view { opacity: 1; transform: translateY(0); }
+    .portfolio-card:hover { border-color: var(--gold); }
+
+    .portfolio-card.hidden-by-filter { display: none; }
+
+    .portfolio-card.expanded { grid-column: 1 / -1; }
+
+    .card-video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; cursor: pointer; }
+
+    .card-video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .portfolio-card.expanded .card-video-wrap { cursor: default; }
+
+    .card-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: 0.35rem 0.8rem;
+    }
+
+    .card-play-btn {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.12);
+      transition: background 0.25s;
+    }
+
+    .card-video-wrap:hover .card-play-btn { background: rgba(0,0,0,0.28); }
+
+    .card-play-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(10,10,10,0.55);
+      border: 1px solid rgba(245,242,237,0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s;
+    }
+
+    .card-video-wrap:hover .card-play-icon { transform: scale(1.1); }
+
+    .card-play-icon .tri {
+      width: 0;
+      height: 0;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 11px solid var(--white);
+      margin-left: 3px;
+    }
+
+    .portfolio-card.playing .card-play-btn { display: none; }
+
+    .card-close {
+      position: absolute;
+      top: 0.7rem;
+      right: 0.7rem;
+      width: 26px;
+      height: 26px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10,10,10,0.6);
+      color: var(--white);
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 2;
+      border: 1px solid rgba(245,242,237,0.3);
+    }
+
+    .portfolio-card.expanded .card-close { display: flex; }
+
+    .card-body { padding: 1.1rem 1.25rem 1.3rem; }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .card-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .card-text {
+      font-size: 0.8rem;
+      color: rgba(245,242,237,0.55);
+      margin-top: 0.6rem;
+    }
+
+    .portfolio-card.expanded .card-title { font-size: 1.25rem; }
+    .portfolio-card.expanded .card-body { padding: 1.5rem 1.8rem 1.8rem; }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      background: var(--dark);
+      padding: 6rem 4rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(201,168,76,0.13);
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p { font-size: 0.7rem; color: var(--grey); letter-spacing: 0.05em; }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 5rem 1.5rem; }
+      .page-header { padding: 8rem 1.5rem 2rem; }
+      .filter-bar { padding: 0 1.5rem; margin-bottom: 2.5rem; }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); padding: 0 1.5rem 3rem; gap: 1rem; }
+      .cta-section { padding: 4rem 1.5rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">MZ Estate Motion</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="index.html#werkwijze">Process</a></li>
+    <li><a href="index.html#prijzen">Pricing</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <p class="section-label">Full Portfolio</p>
+  <h1 class="section-title">Every villa,<br>every angle.</h1>
+  <div class="divider"></div>
+  <p class="sub">A complete look at our cinematic productions — full walkthroughs and highlight shots from every villa we've worked with. Filter by property to see it all.</p>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar" id="filterBar">
+  <button class="filter-btn active" data-filter="all">All villas</button>
+  <button class="filter-btn" data-filter="abba">Villa Abba Beach</button>
+  <button class="filter-btn" data-filter="bonnie">Villa Bonnie</button>
+  <button class="filter-btn" data-filter="kortenhoef">Villa Kortenhoefsedijk 198</button>
+</div>
+
+<!-- PORTFOLIO GRID -->
+<div class="portfolio-grid" id="portfolioGrid">
+
+  <!-- Villa Abba Beach — full walkthrough -->
+  <div class="portfolio-card" data-villa="abba">
+    <div class="card-video-wrap">
+      <span class="card-badge">Full Walkthrough</span>
+      <video preload="metadata" poster="poster-clip-portfolio-abba.jpg">
+        <source src="clip-portfolio-abba.mp4" type="video/mp4" />
+      </video>
+      <div class="card-play-btn"><div class="card-play-icon"><div class="tri"></div></div></div>
+      <div class="card-close">&times;</div>
+    </div>
+    <div class="card-body">
+      <p class="card-tag">Villa Abba Beach · Koh Samui, Thailand</p>
+      <h3 class="card-title">Complete cinematic walkthrough</h3>
+      <p class="card-text">The full production — living areas, bedrooms, and exterior in one continuous cinematic tour.</p>
+    </div>
+  </div>
+
+  <!-- Villa Bonnie — full walkthrough -->
+  <div class="portfolio-card" data-villa="bonnie">
+    <div class="card-video-wrap">
+      <span class="card-badge">Full Walkthrough</span>
+      <video preload="metadata" poster="poster-clip-portfolio-bonnie.jpg">
+        <source src="clip-portfolio-bonnie.mp4" type="video/mp4" />
+      </video>
+      <div class="card-play-btn"><div class="card-play-icon"><div class="tri"></div></div></div>
+      <div class="card-close">&times;</div>
+    </div>
+    <div class="card-body">
+      <p class="card-tag">Villa Bonnie · Koh Samui, Thailand</p>
+      <h3 class="card-title">Complete cinematic walkthrough</h3>
+      <p class="card-text">From the infinity pool to the ocean-view interiors — the full walkthrough production.</p>
+    </div>
+  </div>
+
+  <!-- Villa Kortenhoefsedijk 198 — full walkthrough -->
+  <div class="portfolio-card" data-villa="kortenhoef">
+    <div class="card-video-wrap">
+      <span class="card-badge">Full Walkthrough</span>
+      <video preload="metadata" poster="poster-clip-portfolio-kortenhoef.jpg">
+        <source src="clip-portfolio-kortenhoef.mp4" type="video/mp4" />
+      </video>
+      <div class="card-play-btn"><div class="card-play-icon"><div class="tri"></div></div></div>
+      <div class="card-close">&times;</div>
+    </div>
+    <div class="card-body">
+      <p class="card-tag">Villa Kortenhoefsedijk 198</p>
+      <h3 class="card-title">Complete cinematic walkthrough</h3>
+      <p class="card-text">A calm, refined interior tour — from bedrooms to the garden-facing living spaces.</p>
+    </div>
+  </div>
+
+  <!-- Abba — living room highlight -->
+  <div class="portfolio-card" data-villa="abba">
+    <div class="card-video-wrap">
+      <span class="card-badge">Highlight</span>
+      <video muted loop playsinline preload="metadata" poster="poster-clip-woonkamer-abba.jpg" class="autoplay-clip">
+        <source src="clip-woonkamer-abba.mp4" type="video/mp4" />
+      </video>
+      <div class="card-play-btn"><div class="card-play-icon"><div class="tri"></div></div></div>
+      <div class="card-close">&times;</div>
+    </div>
+    <div class="card-body">
+      <p class="card-tag">Villa Abba Beach · Koh Samui, Thailand</p>
+      <h3 class="card-title">The living room</h3>
+    </div>
+  </div>
+
+  <!-- Abba — bedroom highlight -->
+  <div class="portfolio-card" data-villa="abba">
+    <div class="card-video-wrap">
+      <span class="card-badge">Highlight</span>
+      <video muted loop playsinline preload="metadata" poster="poster-clip-slaapkamer-abba.jpg" class="autoplay-clip">
+        <source src="clip-slaapkamer-abba.mp4" type="video/mp4" />
+      </video>
+      <div class="card-play-btn"><div class="card-play-icon"><div class="tri"></div></div></div>
+      <div class="card-close">&times;</div>
+    </div>
+    <div class="card-body">
+      <p class="card-tag">Villa Abba Beach · Koh Samui, Thailand</p>
+      <h3 class="card-title">The master suite</h3>
+    </div>
+  </div>
+
+  <!-- Abba — drone highlight -->
+  <div class="portfolio-card" data-villa="abba">
+    <div class="card-video-wrap">
+      <span class="card-badge">Highlight</span>
+      <video muted loop playsinline preload="metadata" poster="poster-clip-drone-abba.jpg" class="autoplay-clip">
+        <source src="clip-drone-abba.mp4" type="video/mp4" />
+      </video>
+      <div class="card-play-btn"><div class="card-play-icon"><div class="tri"></div></div></div>
+      <div class="card-close">&times;</div>
+    </div>
+    <div class="card-body">
+      <p class="card-tag">Villa Abba Beach · Koh Samui, Thailand</p>
+      <h3 class="card-title">The bigger perspective</h3>
+    </div>
+  </div>
+
+  <!-- Bonnie — pool highlight -->
+  <div class="portfolio-card" data-villa="bonnie">
+    <div class="card-video-wrap">
+      <span class="card-badge">Highlight</span>
+      <video muted loop playsinline preload="metadata" poster="poster-clip-zwembad.jpg" class="autoplay-clip">
+        <source src="clip-zwembad.mp4" type="video/mp4" />
+      </video>
+      <div class="card-play-btn"><div class="card-play-icon"><div class="tri"></div></div></div>
+      <div class="card-close">&times;</div>
+    </div>
+    <div class="card-body">
+      <p class="card-tag">Villa Bonnie · Koh Samui, Thailand</p>
+      <h3 class="card-title">The infinity pool</h3>
+    </div>
+  </div>
+
+  <!-- Bonnie — drone highlight -->
+  <div class="portfolio-card" data-villa="bonnie">
+    <div class="card-video-wrap">
+      <span class="card-badge">Highlight</span>
+      <video muted loop playsinline preload="metadata" poster="poster-clip-drone-4k.jpg" class="autoplay-clip">
+        <source src="clip-drone-4k.mp4" type="video/mp4" />
+      </video>
+      <div class="card-play-btn"><div class="card-play-icon"><div class="tri"></div></div></div>
+      <div class="card-close">&times;</div>
+    </div>
+    <div class="card-body">
+      <p class="card-tag">Villa Bonnie · Koh Samui, Thailand</p>
+      <h3 class="card-title">Aerial overview</h3>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <p class="section-label">Like what you see?</p>
+  <h2 class="section-title">Let's create yours next.</h2>
+  <div class="divider" style="margin:1.5rem auto;"></div>
+  <a href="index.html#contact" class="btn">Get in touch</a>
+</section>
+
+<footer>
+  <div class="footer-logo">MZ Estate Motion</div>
+  <p>© 2026 MZ Estate Motion. All rights reserved.</p>
+</footer>
+
+<script>
+  // ── FILTER ──
+  const filterBar   = document.getElementById('filterBar');
+  const cards       = document.querySelectorAll('.portfolio-card');
+
+  filterBar.addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+
+    filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.dataset.filter;
+    cards.forEach(card => {
+      const show = filter === 'all' || card.dataset.villa === filter;
+      card.classList.toggle('hidden-by-filter', !show);
+    });
+  });
+
+  // ── FADE-IN ON SCROLL ──
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  cards.forEach(card => revealObserver.observe(card));
+
+  // ── CLICK-TO-EXPAND VIDEO CARDS ──
+  function collapseCard(card) {
+    const video = card.querySelector('video');
+    card.classList.remove('expanded', 'playing');
+    video.controls = false;
+    if (!video.classList.contains('autoplay-clip')) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  }
+
+  function expandCard(card) {
+    cards.forEach(c => { if (c !== card) collapseCard(c); });
+    card.classList.add('expanded', 'playing');
+    const video = card.querySelector('video');
+    video.controls = true;
+    video.play().catch(() => {});
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  cards.forEach(card => {
+    const wrap = card.querySelector('.card-video-wrap');
+    const closeBtn = card.querySelector('.card-close');
+
+    wrap.addEventListener('click', () => {
+      if (card.classList.contains('expanded')) return;
+      expandCard(card);
+    });
+
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      collapseCard(card);
+    });
+  });
+
+  // ── AUTOPLAY HIGHLIGHT CLIPS (muted loops) ──
+  const autoplayClips = document.querySelectorAll('.autoplay-clip');
+
+  const playObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.play().catch(() => {});
+      } else {
+        entry.target.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+
+  autoplayClips.forEach(video => {
+    video.muted = true;
+    playObserver.observe(video);
+  });
+
+  // Fallback for iOS Low Power Mode / autoplay restrictions — retry on first interaction
+  const tryPlayAllOnFirstInteraction = () => {
+    autoplayClips.forEach(video => video.play().catch(() => {}));
+  };
+  ['touchstart', 'scroll', 'click'].forEach(evt => {
+    window.addEventListener(evt, tryPlayAllOnFirstInteraction, { once: true, passive: true });
+  });
+</script>
+
+</body>
+</html>
