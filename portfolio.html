@@ -156,11 +156,11 @@
 
     /* ── PORTFOLIO GRID ── */
     .portfolio-grid {
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 0 4rem 4rem;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
     }
 
@@ -313,7 +313,7 @@
       section { padding: 5rem 1.5rem; }
       .page-header { padding: 8rem 1.5rem 2rem; }
       .filter-bar { padding: 0 1.5rem; margin-bottom: 2.5rem; }
-      .portfolio-grid { grid-template-columns: repeat(2, 1fr); padding: 0 1.5rem 3rem; gap: 1rem; }
+      .portfolio-grid { grid-template-columns: 1fr; padding: 0 1.5rem 3rem; gap: 1rem; }
       .cta-section { padding: 4rem 1.5rem; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
@@ -338,21 +338,20 @@
   <p class="section-label">Full Portfolio</p>
   <h1 class="section-title">Every villa,<br>every angle.</h1>
   <div class="divider"></div>
-  <p class="sub">A complete look at our cinematic productions — full walkthroughs and highlight shots from every villa we've worked with. Filter by property to see it all.</p>
+  <p class="sub">The full cinematic walkthroughs — every villa we've worked with, start to finish. Filter by property to see it all.</p>
 </div>
 
 <!-- FILTER BAR -->
 <div class="filter-bar" id="filterBar">
   <button class="filter-btn active" data-filter="all">All villas</button>
-  <button class="filter-btn" data-filter="abba">Villa Abba Beach</button>
-  <button class="filter-btn" data-filter="bonnie">Villa Bonnie</button>
-  <button class="filter-btn" data-filter="kortenhoef">Villa Kortenhoefsedijk 198</button>
+  <button class="filter-btn" data-filter="abba">Ocean Front Villa</button>
+  <button class="filter-btn" data-filter="bonnie">Infinity Pool Villa</button>
 </div>
 
 <!-- PORTFOLIO GRID -->
 <div class="portfolio-grid" id="portfolioGrid">
 
-  <!-- Villa Abba Beach — full walkthrough -->
+  <!-- Ocean Front Villa — full walkthrough -->
   <div class="portfolio-card" data-villa="abba">
     <div class="card-video-wrap">
       <span class="card-badge">Full Walkthrough</span>
@@ -363,13 +362,13 @@
       <div class="card-close">&times;</div>
     </div>
     <div class="card-body">
-      <p class="card-tag">Villa Abba Beach · Koh Samui, Thailand</p>
+      <p class="card-tag">Ocean Front Villa · Koh Samui, Thailand</p>
       <h3 class="card-title">Complete cinematic walkthrough</h3>
       <p class="card-text">The full production — living areas, bedrooms, and exterior in one continuous cinematic tour.</p>
     </div>
   </div>
 
-  <!-- Villa Bonnie — full walkthrough -->
+  <!-- Infinity Pool Villa — full walkthrough -->
   <div class="portfolio-card" data-villa="bonnie">
     <div class="card-video-wrap">
       <span class="card-badge">Full Walkthrough</span>
@@ -380,106 +379,9 @@
       <div class="card-close">&times;</div>
     </div>
     <div class="card-body">
-      <p class="card-tag">Villa Bonnie · Koh Samui, Thailand</p>
+      <p class="card-tag">Infinity Pool Villa · Koh Samui, Thailand</p>
       <h3 class="card-title">Complete cinematic walkthrough</h3>
       <p class="card-text">From the infinity pool to the ocean-view interiors — the full walkthrough production.</p>
-    </div>
-  </div>
-
-  <!-- Villa Kortenhoefsedijk 198 — full walkthrough -->
-  <div class="portfolio-card" data-villa="kortenhoef">
-    <div class="card-video-wrap">
-      <span class="card-badge">Full Walkthrough</span>
-      <video preload="metadata" poster="poster-clip-portfolio-kortenhoef.jpg">
-        <source src="clip-portfolio-kortenhoef.mp4" type="video/mp4" />
-      </video>
-      <div class="card-play-btn"><div class="card-play-icon"><div class="tri"></div></div></div>
-      <div class="card-close">&times;</div>
-    </div>
-    <div class="card-body">
-      <p class="card-tag">Villa Kortenhoefsedijk 198</p>
-      <h3 class="card-title">Complete cinematic walkthrough</h3>
-      <p class="card-text">A calm, refined interior tour — from bedrooms to the garden-facing living spaces.</p>
-    </div>
-  </div>
-
-  <!-- Abba — living room highlight -->
-  <div class="portfolio-card" data-villa="abba">
-    <div class="card-video-wrap">
-      <span class="card-badge">Highlight</span>
-      <video muted loop playsinline preload="metadata" poster="poster-clip-woonkamer-abba.jpg" class="autoplay-clip">
-        <source src="clip-woonkamer-abba.mp4" type="video/mp4" />
-      </video>
-      <div class="card-play-btn"><div class="card-play-icon"><div class="tri"></div></div></div>
-      <div class="card-close">&times;</div>
-    </div>
-    <div class="card-body">
-      <p class="card-tag">Villa Abba Beach · Koh Samui, Thailand</p>
-      <h3 class="card-title">The living room</h3>
-    </div>
-  </div>
-
-  <!-- Abba — bedroom highlight -->
-  <div class="portfolio-card" data-villa="abba">
-    <div class="card-video-wrap">
-      <span class="card-badge">Highlight</span>
-      <video muted loop playsinline preload="metadata" poster="poster-clip-slaapkamer-abba.jpg" class="autoplay-clip">
-        <source src="clip-slaapkamer-abba.mp4" type="video/mp4" />
-      </video>
-      <div class="card-play-btn"><div class="card-play-icon"><div class="tri"></div></div></div>
-      <div class="card-close">&times;</div>
-    </div>
-    <div class="card-body">
-      <p class="card-tag">Villa Abba Beach · Koh Samui, Thailand</p>
-      <h3 class="card-title">The master suite</h3>
-    </div>
-  </div>
-
-  <!-- Abba — drone highlight -->
-  <div class="portfolio-card" data-villa="abba">
-    <div class="card-video-wrap">
-      <span class="card-badge">Highlight</span>
-      <video muted loop playsinline preload="metadata" poster="poster-clip-drone-abba.jpg" class="autoplay-clip">
-        <source src="clip-drone-abba.mp4" type="video/mp4" />
-      </video>
-      <div class="card-play-btn"><div class="card-play-icon"><div class="tri"></div></div></div>
-      <div class="card-close">&times;</div>
-    </div>
-    <div class="card-body">
-      <p class="card-tag">Villa Abba Beach · Koh Samui, Thailand</p>
-      <h3 class="card-title">The bigger perspective</h3>
-    </div>
-  </div>
-
-  <!-- Bonnie — pool highlight -->
-  <div class="portfolio-card" data-villa="bonnie">
-    <div class="card-video-wrap">
-      <span class="card-badge">Highlight</span>
-      <video muted loop playsinline preload="metadata" poster="poster-clip-zwembad.jpg" class="autoplay-clip">
-        <source src="clip-zwembad.mp4" type="video/mp4" />
-      </video>
-      <div class="card-play-btn"><div class="card-play-icon"><div class="tri"></div></div></div>
-      <div class="card-close">&times;</div>
-    </div>
-    <div class="card-body">
-      <p class="card-tag">Villa Bonnie · Koh Samui, Thailand</p>
-      <h3 class="card-title">The infinity pool</h3>
-    </div>
-  </div>
-
-  <!-- Bonnie — drone highlight -->
-  <div class="portfolio-card" data-villa="bonnie">
-    <div class="card-video-wrap">
-      <span class="card-badge">Highlight</span>
-      <video muted loop playsinline preload="metadata" poster="poster-clip-drone-4k.jpg" class="autoplay-clip">
-        <source src="clip-drone-4k.mp4" type="video/mp4" />
-      </video>
-      <div class="card-play-btn"><div class="card-play-icon"><div class="tri"></div></div></div>
-      <div class="card-close">&times;</div>
-    </div>
-    <div class="card-body">
-      <p class="card-tag">Villa Bonnie · Koh Samui, Thailand</p>
-      <h3 class="card-title">Aerial overview</h3>
     </div>
   </div>
 
